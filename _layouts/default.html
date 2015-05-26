@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.date | date_to_long_string }} {{ page.title }}</title>
+</head>
+<body>
+  <% assign next_week=60*60*24*7+page.date %>
+  <% assign doc=site.collections.doc %>
+  <nav>
+    <a href="{{ site.baseurl }}">Index</a>
+    |<a href="{{ site.baseurl }}{{ site.posts[0].url }}">Most Recent</a>
+    <% if page.previous != nil %>
+      |<a href="{{ site.baseurl }}{{ page.previous.url }}">Previous</a>
+    <% endif %>
+    <% if page.next != nil %>
+      |<a href="{{ site.baseurl }}{{ page.next.url }}">Next</a>
+    <% endif %>
+  </nav>
+  <header>
+    <span>
+      <img></img>
+      <h1>Worship Service</h1>
+      <h4>{{ page.date | date_to_long_string }}</h4>
+    </span>
+  </header>
+  <section>
+    <h3>Call to Worship</h3>
+    <pre>
+      {{ doc.call_to_worship }}
+    </pre>
+  </section>
+  <section>
+    <h3>Praise and Worship Songs:</h3>
+    <ul>
+      <% for song in doc.songs %>
+        <% include songentry.html param=song %>
+      <% endfor %>
+    </ul>
+  </section>
+  <section><h3>Opportunites for growing in Grace</h3></section>
+  <section>
+    <h3>Worship the Lord with our tithes and offerings</h3>
+    <br />
+    <h3>Offering Response:&nbsp;{{ doc.offering_response }}
+  </section>
+  <section><h2>PRAISE, PRAYER AND INTERCESSION</h2></section>
+  <section><h3>Scripture Reading: {{ doc.scripture_reader }}</h3></section>
+  <section><h4><% include songentry.html param=doc.closing_song %></h4></section>
+  <section>
+    <h3>Sermon:&nbsp;Pastor {{ officers.pastor }}</h3>
+    <h2>{{doc.sermon_title}}</h2>
+    <h4><% include list.html param=doc.scriptures %></h4>
+  </section>
+  <section>
+    <h3>Benediction</h3>
+    <br />
+    <h3>Doxology:</h3> <h4>"Praise God From Whom All Blessings Flow" Hymnal #625</h4>
+  </section>
+  <section>
+    <h3>Serving Today:</h3>
+    <h4>Ushers:</h4>&nbsp;<% include list.html param=ushers.current %>
+  </section>
+  <article>
+    <h2>PRAYER FOCUS</h2>
+    <p>{{ content }}</p>
+  </article>
+  <section>
+    <h2>OPPORTUNITIES FOR GROWING IN GRACE</h2>
+
+    <h2>Sunday, {{ next_week | date_to_long_string }}</h2>
+  </section>
+  <section>
+    <h3>Serving Next Week, {{ next_week | date_to_long_string }}</h3>
+    <h4>Ushers:</h4>&nbsp;<% include list.html param=ushers.next %>
+    <br />
+    <h4>Nursery:</h4>&nbsp;<% include list.html param=nursery.next %>
+  </section>
+</body>
+</html>

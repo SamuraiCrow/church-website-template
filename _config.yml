@@ -1,0 +1,17 @@
+baseurl: /church-website-template
+timezone: /America/Denver
+collections:
+  doc:
+    call_to_worship: "???"
+    songs:
+      title: "???"
+      page: nil
+    offering_response: "???"
+    scripture_reader: "???"
+    closing_song:
+      title: "???"
+      page: nil
+    sermon:
+      title: "???"
+      scriptures:
+        "???"
