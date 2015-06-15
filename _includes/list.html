@@ -1,7 +1,7 @@
-<% for individual in include.param %>
-  <% if forloop.last %>
-    <% if forloop.count>1 %> and <% endif %>{{ individual }}
-  <% else %>
+{% for individual in include.param %}
+  {% if forloop.last %}
+    {% if forloop.count>1 %} and {% endif %}{{ individual }}
+  {% else %}
     {{ individual }},
-  <% endif %>
-<% endfor %>
+  {% endif %}
+{% endfor %}

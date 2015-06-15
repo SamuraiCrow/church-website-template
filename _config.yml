@@ -1,5 +1,7 @@
 baseurl: /church-website-template
 timezone: /America/Denver
+exclude: [README.md]
+host: 127.0.0.1
 collections:
   doc:
     call_to_worship: "???"
